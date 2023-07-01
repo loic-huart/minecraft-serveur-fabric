@@ -38,6 +38,27 @@ docker run -p 25565:25565 -d my-minecraft-server
 
 This will start a Minecraft server with the Fabric mod loader running on your local machine, accessible on port 25565.
 
+## Running the Docker Container with docker-compose
+To run the services related to the Minecraft server using docker-compose, please follow these steps:
+
+- Make sure you have Docker Compose installed and working on your system.
+- Place the [`docker-compose.yml`](./docker-compose.yml) file in a directory of your choice.
+
+- Open a command prompt or terminal, navigate to the directory containing the [`docker-compose.yml`](./docker-compose.yml) file, and run the following command:
+
+```sh
+docker-compose up -d
+```
+
+This will start the services specified in the docker-compose.yml, including the Minecraft server with Fabric and the Filebrowser service.
+
+Make sure you have the necessary permissions to run Docker and Docker Compose.
+
+To stop the services, you can use the following command:
+```sh
+docker-compose down
+```
+
 ## Note
 Please make sure to check the EULA before setting EULA to TRUE. By setting EULA to TRUE, you are indicating your agreement to the EULA.
 
