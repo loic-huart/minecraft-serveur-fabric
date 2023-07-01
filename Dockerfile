@@ -16,7 +16,7 @@ WORKDIR /minecraft
 RUN mv /fabric-server-mc.jar fabric-server-mc.jar
 RUN echo "eula=${EULA}" > eula.txt
 
-EXPOSE 25565
+EXPOSE 25565 25575
 
 ENTRYPOINT java -Xms${INIT_MEMORY} -Xmx${MAX_MEMORY} -jar fabric-server-mc.jar
 CMD ["nogui"]
