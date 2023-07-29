@@ -1,0 +1,21 @@
+{
+  "restart": {
+    "cron": "*/10 * * * *",
+    "tasks": [
+      { "time": 60000, "command": "say The server will restart in 5 minutes."  },
+      { "time": 60000, "command": "say 4 minutes left before server restart." },
+      { "time": 60000, "command": "say 3 minutes left before server restart." },
+      { "time": 60000, "command": "say 2 minutes left before server restart." },
+      { "time": 30000, "command": "say 1 minute left before server restart." },
+      { "time": 15000, "command": "say 30 seconds left before server restart." },
+      { "time": 10000, "command": "say 15 seconds left before server restart." },
+      { "time": 1000, "command": "say 5 seconds left before server restart." },
+      { "time": 1000, "command": "say 4 seconds left before server restart." },
+      { "time": 1000, "command": "say 3 seconds left before server restart." },
+      { "time": 1000, "command": "say 2 seconds left before server restart." },
+      { "time": 1000, "command": "say 1 second left before server restart." },
+      { "time": 1000, "command": "say The server will restart now." },
+      { "time": 1000, "command": "stop" }
+    ]
+  }
+}

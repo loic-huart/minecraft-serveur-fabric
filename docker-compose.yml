@@ -2,7 +2,6 @@ version: '3.1'
 
 services:      
   minecraft-server-fabric:
-    platform: linux/amd64
     container_name: 'minecraft-server-fabric'
     image: loic08/minecraft-server-fabric:latest
     ports:
@@ -13,8 +12,10 @@ services:
       MINECRAFT_VERSION: 1.20.1
       FABRIC_LOADER_VERSION: 0.14.21
       FABRIC_INSTALLER_VERSION: 0.11.2
-      INIT_MEMORY: '8G'
+      INIT_MEMORY: '2G'
       MAX_MEMORY: '8G'
+      RCON_ENABLE: true
+      RCON_PASSWORD: mypassword
     restart: unless-stopped
     volumes:
       - minecraft:/minecraft
@@ -23,7 +24,6 @@ services:
   # you can remove it if you don't need it
   filebrowser:
     image: filebrowser/filebrowser:s6
-    platform: linux/amd64
     ports:
       - 8080:80
     volumes:
