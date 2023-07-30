@@ -36,7 +36,7 @@ To add more tasks, you can modify the tasks.conf.json file. Here is the format t
 ```json
 {
   "restart": {
-    "cron": "*/10 * * * *",
+    "cron": "0 0 * * *",
     "tasks": [
       { "time": 60000, "command": "say The server will restart in 5 minutes."  },
       { "time": 60000, "command": "say 4 minutes left before server restart." },
