@@ -3,7 +3,10 @@ version: '4.2'
 services:      
   minecraft-server-fabric:
     container_name: 'minecraft-server-fabric'
-    image: loic08/minecraft-server-fabric:latest
+    # image: loic08/minecraft-server-fabric:latest
+    build: 
+      context: .
+      dockerfile: Dockerfile
     ports:
       - 25565:25565
       - 25575:25575
@@ -12,10 +15,10 @@ services:
       MINECRAFT_VERSION: 1.20.1
       FABRIC_LOADER_VERSION: 0.14.21
       FABRIC_INSTALLER_VERSION: 0.11.2
-      INIT_MEMORY: '2G'
-      MAX_MEMORY: '8G'
-      RCON_ENABLE: true
-      RCON_PASSWORD: mypassword
+      INIT_MEMORY: '1G'
+      MAX_MEMORY: '2G'
+      RCON_ENABLE: "TRUE"
+      RCON_PASSWORD: "mypassword"
     restart: unless-stopped
     volumes:
       - minecraft:/minecraft
