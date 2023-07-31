@@ -1,9 +1,9 @@
 const Rcon = require('rcon');
 const fs = require("fs");
 
-const rcon = new Rcon('localhost', 25575, 'mypassword');
+const rcon = new Rcon('localhost', 25575, process.env.RCON_PASSWORD);
 
-const scheduled_tasks = JSON.parse(fs.readFileSync('/minecraft/scheduled-tasks/tasks.conf.json', 'utf8'));
+const scheduled_tasks = JSON.parse(fs.readFileSync('/minecraft/tasks.conf.json', 'utf8'));
 
 const tasks_name = process.argv[2];
 
