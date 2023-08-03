@@ -46,9 +46,50 @@ if [ ! -f "/minecraft/$FABRIC_SERVER_MC_FILE" ]; then
 fi
 
 echo "eula=${EULA}" > eula.txt
-echo "enable-rcon=${RCON_ENABLE}" > server.properties
-echo "rcon.password=${RCON_PASSWORD}" >> server.properties
-echo "rcon.port=25575" >> server.properties
+
+
+
+# echo "enable-rcon=${RCON_ENABLE}" > server.properties
+# echo "rcon.password=${RCON_PASSWORD}" >> server.properties
+# echo "rcon.port=25575" >> server.properties
+
+
+# Vérifiez si le fichier server.properties existe, sinon le crée
+if [ ! -f server.properties ]; then
+    touch server.properties
+fi
+
+tempfile=$(mktemp)
+
+while IFS= read -r line
+do
+    property=$(echo "$line" | cut -d '=' -f 1)
+    current_value=$(echo "$line" | cut -d '=' -f 2-)
+
+    if [ "$property" = "enable-rcon" ]; then
+        if [ "$current_value" != "$RCON_ENABLE" ]; then
+            echo "enable-rcon=$RCON_ENABLE" >> $tempfile
+        else
+            echo "$line" >> $tempfile
+        fi
+    elif [ "$property" = "rcon.password" ]; then
+        if [ "$current_value" != "$RCON_PASSWORD" ]; then
+            echo "rcon.password=$RCON_PASSWORD" >> $tempfile
+        else
+            echo "$line" >> $tempfile
+        fi
+    elif [ "$property" = "rcon.port" ]; then
+        if [ "$current_value" != "25575" ]; then
+            echo "rcon.port=25575" >> $tempfile
+        else
+            echo "$line" >> $tempfile
+        fi
+    else
+        echo "$line" >> $tempfile
+    fi
+done < server.properties
+
+mv $tempfile server.properties
 
 # start
 java -Xms${INIT_MEMORY} -Xmx${MAX_MEMORY} -jar $FABRIC_SERVER_MC_FILE nogui
